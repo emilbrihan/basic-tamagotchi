@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tamagotchi App</title>
+    <style>
+      /* Add any styles you want for your app */
+    </style>
+  </head>
+  <body>
+    <div id="tamagotchi">
+      <h1>Tamagotchi</h1>
+      <div id="stats">
+        <p>Hunger: <span id="hunger"></span></p>
+        <p>Happiness: <span id="happiness"></span></p>
+        <p>Energy: <span id="energy"></span></p>
+      </div>
+      <div id="buttons">
+        <button id="feed">Feed</button>
+        <button id="play">Play</button>
+        <button id="sleep">Sleep</button>
+      </div>
+    </div>
+    
+    <script>
+      // Define your Tamagotchi object
+      const tamagotchi = {
+        name: "Tammy",
+        hunger: 50,
+        happiness: 50,
+        energy: 50,
+        feed: function() {
+          this.hunger += 10;
+          this.happiness += 5;
+          this.energy -= 5;
+        },
+        play: function() {
+          this.hunger -= 5;
+          this.happiness += 10;
+          this.energy -= 10;
+        },
+        sleep: function() {
+          this.hunger -= 5;
+          this.happiness -= 5;
+          this.energy += 20;
+        },
+        updateStats: function() {
+          document.getElementById("hunger").innerText = this.hunger;
+          document.getElementById("happiness").innerText = this.happiness;
+          document.getElementById("energy").innerText = this.energy;
+        }
+      };
+      
+      // Attach event listeners to the buttons
+      document.getElementById("feed").addEventListener("click", function() {
+        tamagotchi.feed();
+        tamagotchi.updateStats();
+      });
+      
+      document.getElementById("play").addEventListener("click", function() {
+        tamagotchi.play();
+        tamagotchi.updateStats();
+      });
+      
+      document.getElementById("sleep").addEventListener("click", function() {
+        tamagotchi.sleep();
+        tamagotchi.updateStats();
+      });
+      
+      // Update the stats initially
+      tamagotchi.updateStats();
+    </script>
+  </body>
+</html>
